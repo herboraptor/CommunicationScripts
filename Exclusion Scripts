@@ -1,0 +1,14 @@
+/*
+A source for exclusion scripts (e.g. for use in the exclusion script option of a triggered or user initiated send)
+
+Created: 2024-04-16 by Herb Radmanesh
+Modified: 2024-04-16 by Herb Radmanesh
+
+Notes: exclusion scripts are used with the 'or' operator to consider each script independently (i.e. an email will not send if the one of three scripts are met), or with the 'and' operator to consider all scripts collectively.
+*/
+
+/*script to exclude recipients where the last digit of the field name 'DEField' from the Data Extension associated with the trigger/user-initiated send is equal to 0 or 1*/
+
+Substring(DEField, SUBTRACT(Length(DEField), 0), 1) == '0'
+  OR Substring(DEField, SUBTRACT(Length(DEField), 0), 1) == '1'
+
